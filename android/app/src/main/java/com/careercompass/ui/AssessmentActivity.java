@@ -132,9 +132,15 @@ public class AssessmentActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ApiResponse<List<QuestionDto>>> call, Throwable t) {
+                // If emulator alias 10.0.2.2 fails, automatically try the Mac's host Wi-Fi IP
+                if (ApiClient.getBaseUrl().contains("10.0.2.2")) {
+                    ApiClient.setBaseUrl("http://10.173.188.75:8080/api/");
+                    fetchQuestionsFromBackend();
+                    return;
+                }
                 hideLoading();
                 showErrorDialog("Cannot connect to backend server at " + ApiClient.getBaseUrl() +
-                        "\n\nPlease ensure Spring Boot is running and database is accessible.\n\nError: " + t.getMessage());
+                        "\n\nPlease ensure Spring Boot is running and reachable.\n\nError: " + t.getMessage());
             }
         });
     }
@@ -309,8 +315,30 @@ public class AssessmentActivity extends AppCompatActivity {
                         submitAssessment();
                     }
                 })
+                .setNeutralButton("Change Server IP", (dialog, which) -> showChangeUrlDialog())
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .setCancelable(false)
+                .show();
+    }
+
+    private void showChangeUrlDialog() {
+        android.widget.EditText input = new android.widget.EditText(this);
+        input.setText(ApiClient.getBaseUrl());
+        input.setSelection(input.getText().length());
+        input.setPadding(40, 30, 40, 30);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Configure Server URL")
+                .setMessage("Current host address:\n- Emulator: http://10.0.2.2:8080/api/\n- Physical Phone: http://10.173.188.75:8080/api/\n\nEdit URL below:")
+                .setView(input)
+                .setPositiveButton("Save & Connect", (d, w) -> {
+                    String url = input.getText().toString().trim();
+                    if (!url.isEmpty()) {
+                        ApiClient.setBaseUrl(url);
+                        fetchQuestionsFromBackend();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
                 .show();
     }
 }

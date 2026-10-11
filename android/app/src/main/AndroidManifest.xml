@@ -12,6 +12,7 @@
         android:roundIcon="@drawable/ic_compass"
         android:supportsRtl="true"
         android:theme="@style/Theme.CareerCompass"
+        android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config">
 
         <!-- Screen 1: Welcome (Launcher) -->
