@@ -12,7 +12,10 @@ import java.util.Objects;
 @Embeddable
 public class Student {
 
+    @jakarta.persistence.Column(name = "student_name", nullable = false)
     private String name;
+
+    @jakarta.persistence.Column(name = "education_level")
     private String educationLevel;
 
     /**

@@ -49,7 +49,6 @@ public class AssessmentResult {
 
     @ElementCollection
     @CollectionTable(name = "assessment_recommendations", joinColumns = @JoinColumn(name = "assessment_id"))
-    @OrderColumn(name = "rank_order")
     private List<CareerRecommendation> recommendations = new ArrayList<>();
 
     public AssessmentResult() {
