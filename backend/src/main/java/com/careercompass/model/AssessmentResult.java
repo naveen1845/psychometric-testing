@@ -39,15 +39,15 @@ public class AssessmentResult {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "assessment_answers", joinColumns = @JoinColumn(name = "assessment_id"))
     private List<Response> answers = new ArrayList<>();
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "assessment_trait_scores", joinColumns = @JoinColumn(name = "assessment_id"))
     private List<TraitScore> traitScores = new ArrayList<>();
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "assessment_recommendations", joinColumns = @JoinColumn(name = "assessment_id"))
     @OrderColumn(name = "rank_order")
     private List<CareerRecommendation> recommendations = new ArrayList<>();

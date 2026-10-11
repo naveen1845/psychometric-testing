@@ -143,6 +143,7 @@ public class AssessmentService {
     /**
      * Retrieves an existing assessment result by ID.
      */
+    @Transactional(readOnly = true)
     public AssessmentResultResponse getAssessmentResultById(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("Assessment result ID cannot be null.");
