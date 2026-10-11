@@ -1,28 +1,83 @@
 #!/bin/sh
 # ----------------------------------------------------------------------------
-# Maven Wrapper Executable Script
+# Self-Bootstrapping Maven Wrapper for Career Compass
+# Automatically detects Java on macOS and bootstraps Maven if not installed
 # ----------------------------------------------------------------------------
 set -e
 
 DIRNAME="$(cd "$(dirname "$0")" && pwd)"
 export MAVEN_PROJECTBASEDIR="$DIRNAME"
 
-# Check if global mvn exists
+# 1. Automatic Java Detection on macOS
+if [ -z "$JAVA_HOME" ] || [ ! -x "$JAVA_HOME/bin/java" ]; then
+    if [ -x "/usr/libexec/java_home" ]; then
+        DETECTED_JAVA="$(/usr/libexec/java_home 2>/dev/null || true)"
+        if [ -n "$DETECTED_JAVA" ] && [ -x "$DETECTED_JAVA/bin/java" ]; then
+            export JAVA_HOME="$DETECTED_JAVA"
+        fi
+    fi
+fi
+
+# Fallback scan of /Library/Java/JavaVirtualMachines if JAVA_HOME still not set
+if [ -z "$JAVA_HOME" ] || [ ! -x "$JAVA_HOME/bin/java" ]; then
+    for candidate in /Library/Java/JavaVirtualMachines/*/Contents/Home; do
+        if [ -d "$candidate" ] && [ -x "$candidate/bin/java" ]; then
+            export JAVA_HOME="$candidate"
+            export PATH="$JAVA_HOME/bin:$PATH"
+            break
+        fi
+    done
+fi
+
+if [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ]; then
+    export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
+# 2. Check if global 'mvn' is installed and working
 if command -v mvn >/dev/null 2>&1; then
     exec mvn "$@"
 fi
 
-# Fallback: check if maven-wrapper.jar exists
-WRAPPER_JAR="$DIRNAME/.mvn/wrapper/maven-wrapper.jar"
-if [ ! -f "$WRAPPER_JAR" ]; then
-    echo "Global 'mvn' not detected. Please install Maven (e.g. brew install maven or apt install maven) or run with IDE."
-    echo "Attempting to invoke maven using wrapper..."
+# 3. Check if local portable Maven is already downloaded
+MAVEN_VERSION="3.9.6"
+MAVEN_DIR="$HOME/.m2/wrapper/apache-maven-$MAVEN_VERSION"
+if [ -x "$MAVEN_DIR/bin/mvn" ]; then
+    exec "$MAVEN_DIR/bin/mvn" "$@"
 fi
 
-if [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ]; then
-    JAVACMD="$JAVA_HOME/bin/java"
+# 4. Bootstrap portable Maven if missing
+echo "================================================================="
+echo " Maven is not detected on your system."
+echo " Automatically downloading portable Apache Maven $MAVEN_VERSION..."
+echo "================================================================="
+
+mkdir -p "$HOME/.m2/wrapper"
+TAR_FILE="$HOME/.m2/wrapper/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+DOWNLOAD_URL="https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+
+if [ ! -f "$TAR_FILE" ]; then
+    if command -v curl >/dev/null 2>&1; then
+        echo "Downloading via curl from $DOWNLOAD_URL ..."
+        curl -fL --progress-bar -o "$TAR_FILE" "$DOWNLOAD_URL"
+    elif command -v python3 >/dev/null 2>&1; then
+        echo "Downloading via python3 from $DOWNLOAD_URL ..."
+        python3 -c "import urllib.request; urllib.request.urlretrieve('$DOWNLOAD_URL', '$TAR_FILE')"
+    else
+        echo "Error: Neither curl nor python3 is available to download Maven."
+        echo "Please install Maven manually: brew install maven"
+        exit 1
+    fi
+fi
+
+echo "Extracting Apache Maven to $HOME/.m2/wrapper ..."
+tar -xzf "$TAR_FILE" -C "$HOME/.m2/wrapper"
+rm -f "$TAR_FILE"
+
+if [ -x "$MAVEN_DIR/bin/mvn" ]; then
+    echo "Apache Maven $MAVEN_VERSION bootstrapped successfully!"
+    echo "================================================================="
+    exec "$MAVEN_DIR/bin/mvn" "$@"
 else
-    JAVACMD="java"
+    echo "Error: Failed to set up Maven in $MAVEN_DIR"
+    exit 1
 fi
-
-exec "$JAVACMD" -jar "$WRAPPER_JAR" "$@"
