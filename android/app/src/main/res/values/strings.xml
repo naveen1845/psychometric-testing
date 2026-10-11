@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Career Compass</string>
+    <string name="welcome_title">Discover Your Ideal Tech Career Path</string>
+    <string name="welcome_subtitle">A structured 15-question interest assessment evaluating five core dimensions to guide your professional journey.</string>
+    <string name="start_assessment_btn">Start Assessment</string>
+    <string name="disclaimer_welcome">Disclaimer: Career Compass results are designed for college educational guidance and self-reflection. Career match rankings are generated via rule-based algorithms, not psychometric certification.</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">Student Profile</string>
+    <string name="profile_subtitle">Please enter your basic information before beginning the career assessment.</string>
+    <string name="name_label">Full Name *</string>
+    <string name="name_hint">e.g. Alex Johnson</string>
+    <string name="education_label">Education Level (Optional)</string>
+    <string name="education_hint">e.g. MCA 1st Year, BCA Graduate, B.Tech</string>
+    <string name="continue_btn">Continue to Assessment</string>
+    <string name="error_name_required">Please enter your name to continue.</string>
+
+    <!-- Assessment Screen -->
+    <string name="question_counter_format">Question %1$d of %2$d</string>
+    <string name="previous_btn">Previous</string>
+    <string name="next_btn">Next</string>
+    <string name="submit_assessment_btn">Submit Assessment</string>
+    <string name="option_1">1. Strongly Disagree</string>
+    <string name="option_2">2. Disagree</string>
+    <string name="option_3">3. Neutral</string>
+    <string name="option_4">4. Agree</string>
+    <string name="option_5">5. Strongly Agree</string>
+    <string name="error_select_option">Please select an answer before continuing.</string>
+    <string name="submitting_assessment">Evaluating your responses with the backend scoring engine…</string>
+
+    <!-- Results Dashboard -->
+    <string name="results_title">Assessment Results</string>
+    <string name="dimension_scores_header">Your Five Dimension Scores</string>
+    <string name="recommended_careers_header">Top 3 Recommended Careers</string>
+    <string name="view_details_btn">View Career Details</string>
+    <string name="retake_assessment_btn">Retake Assessment</string>
+    <string name="results_disclaimer">Notice: Match percentages reflect rule-based weighted alignment between your responses and predefined career trait profiles. They are intended for educational exploration.</string>
+
+    <!-- Career Details -->
+    <string name="career_details_title">Career Profile</string>
+    <string name="section_overview">Career Overview</string>
+    <string name="section_skills">Required &amp; Relevant Skills</string>
+    <string name="section_matching_rationale">Why Your Profile Matches</string>
+    <string name="section_learning_activities">Recommended Beginner Learning Activities</string>
+    <string name="back_to_results">Back to Results</string>
+</resources>

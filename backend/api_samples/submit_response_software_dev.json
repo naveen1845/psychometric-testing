@@ -1,0 +1,81 @@
+{
+  "success": true,
+  "message": "Assessment evaluated and recorded successfully.",
+  "data": {
+    "id": 2,
+    "studentName": "Alex Rivera",
+    "educationLevel": "MCA 2nd Year",
+    "createdAt": "2026-10-11T14:45:00",
+    "traitScores": [
+      {
+        "dimension": "ANALYTICAL_THINKING",
+        "dimensionName": "Analytical Thinking",
+        "dimensionDescription": "Measures interest in logic, pattern identification, and structured problem-solving.",
+        "rawScore": 15,
+        "normalizedScore": 100
+      },
+      {
+        "dimension": "CREATIVITY",
+        "dimensionName": "Creativity",
+        "dimensionDescription": "Measures interest in original thinking, visual/aesthetic design, and innovative solutions.",
+        "rawScore": 11,
+        "normalizedScore": 67
+      },
+      {
+        "dimension": "SOCIAL_ORIENTATION",
+        "dimensionName": "Social Orientation",
+        "dimensionDescription": "Measures interest in helping others, teaching, collaboration, and empathetic communication.",
+        "rawScore": 8,
+        "normalizedScore": 42
+      },
+      {
+        "dimension": "LEADERSHIP_AND_INITIATIVE",
+        "dimensionName": "Leadership and Initiative",
+        "dimensionDescription": "Measures comfort with taking ownership, decision-making, and directing group activities.",
+        "rawScore": 8,
+        "normalizedScore": 42
+      },
+      {
+        "dimension": "PRACTICAL_HANDS_ON",
+        "dimensionName": "Practical and Hands-on Orientation",
+        "dimensionDescription": "Measures enthusiasm for building, experimentation, technical mechanics, and practical implementation.",
+        "rawScore": 15,
+        "normalizedScore": 100
+      }
+    ],
+    "recommendations": [
+      {
+        "careerId": 1,
+        "careerName": "Software Developer",
+        "matchScore": 79,
+        "rankOrder": 1,
+        "description": "Designs, builds, tests, and maintains robust software applications and system architectures to solve complex business and technical challenges.",
+        "relevantSkills": "Java, Spring Boot, Object-Oriented Design, Data Structures & Algorithms, Git, REST APIs, SQL",
+        "matchingExplanation": "Your high scores in Analytical Thinking and Practical Hands-on Orientation align strongly with core software engineering tasks: writing clean code, architectural problem-solving, and systematic debugging.",
+        "learningActivities": "1. Build a mini project in Java or Python applying OOP principles.\n2. Practice algorithmic problems on LeetCode or HackerRank.\n3. Learn version control using Git and GitHub workflows."
+      },
+      {
+        "careerId": 2,
+        "careerName": "Data Analyst",
+        "matchScore": 73,
+        "rankOrder": 2,
+        "description": "Inspects, cleans, transforms, and models data to uncover meaningful patterns, generate visual reports, and guide data-informed decision-making.",
+        "relevantSkills": "SQL, Python/R, Statistical Modeling, Data Visualization (Tableau/Power BI), Excel, Analytical Thinking",
+        "matchingExplanation": "Your elevated Analytical Thinking and Hands-on problem-solving reflect the quantitative inquiry required to dissect datasets, detect anomalies, and derive strategic insights.",
+        "learningActivities": "1. Learn SQL query formulation and database schema design.\n2. Analyze public datasets on Kaggle or government open data portals.\n3. Build an interactive visual dashboard in Power BI or Google Looker Studio."
+      },
+      {
+        "careerId": 3,
+        "careerName": "UX/UI Designer",
+        "matchScore": 59,
+        "rankOrder": 3,
+        "description": "Creates intuitive, aesthetically pleasing, and user-centric interfaces for mobile and web products through research, wireframing, and usability testing.",
+        "relevantSkills": "Figma, Wireframing & Prototyping, User Research, Visual Hierarchy, Design Systems, Empathy",
+        "matchingExplanation": "Your high Creativity coupled with strong Social Orientation provides the essential empathy to understand user pain points and design engaging, human-centered experiences.",
+        "learningActivities": "1. Complete a UI design course using Figma.\n2. Redesign an existing mobile app screen to solve an identified usability flaw.\n3. Study Nielsen Norman Group usability heuristics and design principles."
+      }
+    ],
+    "algorithmNotice": "Match scores and trait evaluations are calculated using Career Compass rule-based educational heuristics, not clinically or scientifically validated psychometric measures."
+  },
+  "timestamp": "2026-10-11T14:45:00.123"
+}

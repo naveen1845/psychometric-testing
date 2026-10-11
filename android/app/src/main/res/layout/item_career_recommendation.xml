@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header Row: Rank Badge & Match Percentage Badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvRankBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_dimension"
+                android:text="#1 Top Match"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvMatchScoreBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="79% Match"
+                android:textColor="@color/accent"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Career Name -->
+        <TextView
+            android:id="@+id/tvCareerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Software Developer"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Career Description Summary -->
+        <TextView
+            android:id="@+id/tvCareerDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Designs, builds, tests, and maintains robust software applications and system architectures."
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:lineSpacingExtra="3dp" />
+
+        <!-- Relevant Skills Preview -->
+        <TextView
+            android:id="@+id/tvRelevantSkillsPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Key Skills: Java, Spring Boot, OOP, Git, SQL"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp"
+            android:textStyle="italic" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <!-- View Details Button -->
+        <Button
+            android:id="@+id/btnViewCareerDetails"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/view_details_btn"
+            android:textColor="@color/primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_button_secondary"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,28 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Maven Wrapper Executable Script
+# ----------------------------------------------------------------------------
+set -e
+
+DIRNAME="$(cd "$(dirname "$0")" && pwd)"
+export MAVEN_PROJECTBASEDIR="$DIRNAME"
+
+# Check if global mvn exists
+if command -v mvn >/dev/null 2>&1; then
+    exec mvn "$@"
+fi
+
+# Fallback: check if maven-wrapper.jar exists
+WRAPPER_JAR="$DIRNAME/.mvn/wrapper/maven-wrapper.jar"
+if [ ! -f "$WRAPPER_JAR" ]; then
+    echo "Global 'mvn' not detected. Please install Maven (e.g. brew install maven or apt install maven) or run with IDE."
+    echo "Attempting to invoke maven using wrapper..."
+fi
+
+if [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ]; then
+    JAVACMD="$JAVA_HOME/bin/java"
+else
+    JAVACMD="java"
+fi
+
+exec "$JAVACMD" -jar "$WRAPPER_JAR" "$@"

@@ -1,0 +1,8 @@
+{
+  "studentName": "Invalid Student",
+  "educationLevel": "MCA",
+  "answers": [
+    { "questionId": 1, "rating": 5 },
+    { "questionId": 2, "rating": 5 }
+  ]
+}
